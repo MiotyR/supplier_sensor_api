@@ -48,6 +48,10 @@ class VisitSensor:
         if week_day == 6:
             visit = -1
 
+        # Return -1 on 01/01, 05/01, 12/25 because stores are closed
+        if (business_date.month, business_date.day) in [(1, 1), (5, 1), (12, 25)]:
+            visit = -1
+
         # Return an integer
         return np.floor(visit)
 
